@@ -69,8 +69,10 @@
     <Compile Include="Assets\Scripts\ActorDataManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InteractionManager.cs" />
-    <Compile Include="Assets\WeaponData.cs" />
-    <Compile Include="Assets\WeaponManager.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
+    <Compile Include="Assets\Scripts\WeaponData.cs" />
+    <Compile Include="Assets\Scripts\WeaponManager.cs" />
+    <Compile Include="Assets\TimerTest.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Unity/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
