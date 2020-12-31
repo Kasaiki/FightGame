@@ -11,6 +11,10 @@ public class ActorDataManager : MonoBehaviour
         return aData.ATK;
     }
 
+    public float GetRandomATK(float percentage = 0.3f) {
+        return Random.Range( (1 - percentage) * aData.ATK, (1 + percentage) * aData.ATK );
+    }
+
     public float GetDEF() {
         return aData.DEF;
     }

@@ -12,6 +12,15 @@ public class WeaponManager : MonoBehaviour
         return wdata.ATK;
     }
 
+    /// <summary>
+    /// 乱数で攻撃力にランダム性を持たせる。
+    /// </summary>
+    /// <param name="percentage"></param>
+    /// <returns></returns>
+    public float GetWeaponRandomATK(float percentage = 0.3f) {
+        return Random.Range((1-percentage) * wdata.ATK,( 1+percentage) * wdata.ATK);
+    }
+
     public void EQEnable() {
         wdata.wState = WeaponData.weaponSTATE.ACTIVE;
         ATKID++;

@@ -24,7 +24,7 @@ public class WeaponData : MonoBehaviour
             if (targetim != null) {
                 targetim.DoDamage( selfim );
             }
-            print( targetim );
+            //print( targetim );
         }
     }
 }

@@ -20,17 +20,17 @@ public class ActorData : MonoBehaviour
         BarUpdate( );
     }
 
+    /// <summary>
+    /// 攻撃された時の、削るHPの計算を行う
+    /// </summary>
+    /// <param name="value">攻撃値</param>
     public void AddHP(float value) {
         //print( "AddHP method is called" );
-        HP = ValueRegulate( HP - value, 0, HPMAX );
+        HP = Mathf.Clamp( HP - value, 0, HPMAX );
         BarUpdate( );
     }
 
-    // regulate the value , make sure it is between [0,MAX]
-    private float ValueRegulate(float value, float min, float max) {
-        return Mathf.Clamp( value, min, max );
-    }
-
+    // HPBarの更新を行う
     private void BarUpdate() {
         uiBar.fillAmount = HP / HPMAX;
     }

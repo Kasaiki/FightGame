@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FairyGUI;
 
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// ゲームは４つのステージからなる。
+    /// IDLEはゲーム開始の直後
+    /// PLAYERAとPLAYERBはそれぞれPlayerAとPlayerBが攻撃するターン
+    /// FINISHEDはゲーム終了状態
+    /// </summary>
     public enum STATE
     {
         IDLE,
@@ -12,12 +19,9 @@ public class GameManager : MonoBehaviour
         FINISHED
     }
 
-    [Header( "==== Parameters Settings ====" )]
-    [Range( 0, 10.0f )]
-    public float i = 0.1f;
+    [Header("==== FGUI Settings ====")]
+    public FGUITester fgui;
 
-    [Header( "==== String Setting ====" )]
-    public string str1;
 
     [Header( "==== ActorController Settings ====" )]
     public ActorController ac1;
@@ -27,16 +31,18 @@ public class GameManager : MonoBehaviour
 
     [Header( "==== Game State ====" )]
     public STATE state;
+    private bool firstEnter = true; // 
 
-    private bool firstEnter = true; // As a FLAG signal 
-
-    // Start is called before the first frame update
     void Start() {
         
     }
 
     // Update is called once per frame
     void Update() {
+        //if (Input.GetKeyDown( KeyCode.A )) {
+        //    fgui.Play( "SceneBattleScene" );
+        //}
+
         if (state == STATE.IDLE) {
             if (firstEnter == true) {
                 // Trigger once
@@ -80,24 +86,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 「Battle Start」画面に移って、PlayerAが先攻として、ゲームを開始する
+    /// </summary>
     IEnumerator TaskIDLE() {
-        yield return new WaitForSeconds( 1.0f );
+        fgui.Play( "SceneBattleScene" );
+        yield return new WaitForSeconds( 1.2f );
         state = STATE.PLAYERA;
-        ac1.anim.SetTrigger( "atk" );
         firstEnter = true;
     }
 
+    /// <summary>
+    /// PlayerAが攻撃し、PlayerBのターンに移る
+    /// </summary>
     IEnumerator TaskPLAYERA() {
-        yield return new WaitForSeconds( 1.0f );
+        yield return new WaitForSeconds( 1.2f );
         state = STATE.PLAYERB;
-        ac2.anim.SetTrigger( "atk" );
+        ac1.anim.SetTrigger( "atk" );
         firstEnter = true;
     }
 
+    /// <summary>
+    /// PlayerBが攻撃し、PlayerAのターンに移る
+    /// </summary>
     IEnumerator TaskPLAYERB() {
-        yield return new WaitForSeconds( 1.0f );
+        yield return new WaitForSeconds( 1.5f );
         state = STATE.PLAYERA;
-        ac1.anim.SetTrigger( "atk" );
+        ac2.anim.SetTrigger( "atk" );
         firstEnter = true;
     }
 }
